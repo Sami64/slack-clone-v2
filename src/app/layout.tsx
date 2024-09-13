@@ -1,4 +1,5 @@
 import { ConvexClientProvider } from '@/components/convex-client-provider'
+import Modals from '@/components/modals'
 import { ConvexAuthNextjsServerProvider } from '@convex-dev/auth/nextjs/server'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
@@ -30,7 +31,9 @@ export default function RootLayout({
 			<html lang="en">
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-					<ConvexClientProvider>{children}</ConvexClientProvider>
+					<ConvexClientProvider>
+						<Modals /> {children}
+					</ConvexClientProvider>
 				</body>
 			</html>
 		</ConvexAuthNextjsServerProvider>
