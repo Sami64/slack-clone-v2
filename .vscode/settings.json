@@ -1,3 +1,14 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib"
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"VsCodeTaskButtons.showCounter": false,
+	"VsCodeTaskButtons.tasks": [
+		{
+			"label": "🔺 Next",
+			"task": "Next.js: run"
+		},
+		{
+			"label": "🔺 Convex Dev",
+			"task": "Run Convex Dev"
+		}
+	]
 }

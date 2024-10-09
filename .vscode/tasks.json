@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Next.js: run",
+      "type": "bun",
+      "script": "dev",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Run Convex Dev",
+      "type": "bun",
+      "script": "convex-dev",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    }
+  ]
+}
