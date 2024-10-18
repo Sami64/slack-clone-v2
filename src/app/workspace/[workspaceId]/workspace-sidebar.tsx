@@ -3,6 +3,7 @@ import { useCreateChannelModal } from '@/features/channels/store/use-create-chan
 import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { useGetMembers } from '@/features/members/api/use-get-members'
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
+import { useChannelId } from '@/hooks/use-channel-id'
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import {
 	AlertTriangle,
@@ -18,6 +19,7 @@ import WorkspaceSection from './workspace-section'
 
 const WorkspaceSidebar = () => {
 	const workspaceId = useWorkspaceId()
+	const channelId = useChannelId()
 	const [_open, setOpen] = useCreateChannelModal()
 
 	const { data: member, isLoading: memberLoading } = useCurrentMember({
@@ -33,7 +35,7 @@ const WorkspaceSidebar = () => {
 		workspaceId,
 	})
 
-	if (workspaceLoading || memberLoading) {
+	if (workspaceLoading || memberLoading || channelsLoading || membersLoading) {
 		return (
 			<div className="flex flex-col bg-[#5E2C5F] h-full items-center justify-center">
 				<Loader className="size-5 animate-spin text-white" />
@@ -78,6 +80,7 @@ const WorkspaceSidebar = () => {
 						id={item._id}
 						label={item.name}
 						icon={HashIcon}
+						variant={channelId === item._id ? 'active' : 'default'}
 					/>
 				))}
 			</WorkspaceSection>
