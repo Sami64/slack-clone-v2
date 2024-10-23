@@ -22,7 +22,7 @@ interface MessagelistProps {
 	canLoadMore: boolean
 }
 
-const formatDateLabel = (dateKey: string) => {
+export const formatDateLabel = (dateKey: string) => {
 	const date = new Date(dateKey)
 
 	if (isToday(date)) {
