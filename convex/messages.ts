@@ -55,7 +55,7 @@ const populateMember = (ctx: QueryCtx, memberId: Id<'members'>) => {
 	return ctx.db.get(memberId)
 }
 
-const getMember = async (
+export const getMember = async (
 	ctx: QueryCtx,
 	workspaceId: Id<'workspaces'>,
 	userId: Id<'users'>
