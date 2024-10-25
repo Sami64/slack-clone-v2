@@ -10,6 +10,7 @@ import { toast } from 'sonner'
 import { Doc, Id } from '../../convex/_generated/dataModel'
 import Hint from './hint'
 import Reactions from './reactions'
+import ThreadBar from './thread-bar'
 import Thumbnail from './thumbnail'
 import Toolbar from './toolbar'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
@@ -39,6 +40,7 @@ interface MessageProps {
 	hideThreadButton?: boolean
 	threadCount?: number
 	threadImage?: string
+	threadName?: string
 	threadTimestamp?: number
 }
 
@@ -62,10 +64,11 @@ const Message = ({
 	setEditingId,
 	hideThreadButton,
 	threadCount,
+	threadName,
 	threadImage,
 	threadTimestamp,
 }: MessageProps) => {
-	const { parentMessageId, onOpenMessage, onClose } = usePanel()
+	const { parentMessageId, onOpenMessage, onClose, onOpenProfile } = usePanel()
 
 	const [ConfirmDialog, confirm] = useConfirm(
 		'Delete message',
@@ -80,7 +83,7 @@ const Message = ({
 	const { mutate: toggleReaction, isPending: isTogglingReaction } =
 		useToggleReaction()
 
-	const isPending = isUpdatingMessage
+	const isPending = isUpdatingMessage || isTogglingReaction
 
 	const handleUpdate = ({ body }: { body: string }) => {
 		updateMessage(
@@ -170,6 +173,13 @@ const Message = ({
 									data={reactions}
 									onChange={handleReaction}
 								/>
+								<ThreadBar
+									count={threadCount}
+									image={threadImage}
+									timestamp={threadTimestamp}
+									name={threadName}
+									onClick={() => onOpenMessage(id)}
+								/>
 							</div>
 						)}
 					</div>
@@ -202,7 +212,7 @@ const Message = ({
 						'bg-rose-500/50 transform transition-all scale-y-0 origin-bottom duration-200'
 				)}>
 				<div className="flex items-start gap-2">
-					<button>
+					<button onClick={() => onOpenProfile(memberId)}>
 						<Avatar>
 							<AvatarImage
 								src={authorImage}
@@ -228,7 +238,7 @@ const Message = ({
 							<div className="text-sm">
 								<button
 									className="font-bold text-primary hover:underline"
-									onClick={() => {}}>
+									onClick={() => onOpenProfile(memberId)}>
 									{authorName}
 								</button>
 								<span>&nbsp;&nbsp;</span>
@@ -246,6 +256,13 @@ const Message = ({
 							<Reactions
 								data={reactions}
 								onChange={handleReaction}
+							/>
+							<ThreadBar
+								count={threadCount}
+								image={threadImage}
+								timestamp={threadTimestamp}
+								name={threadName}
+								onClick={() => onOpenMessage(id)}
 							/>
 						</div>
 					)}
