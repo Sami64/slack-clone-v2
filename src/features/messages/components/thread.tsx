@@ -196,6 +196,7 @@ const Thread = ({ messageId, onClose }: ThreadProps) => {
 
 							return (
 								<Message
+									key={message._id}
 									hideThreadButton
 									memberId={message.memberId}
 									authorImage={message.user.image}
