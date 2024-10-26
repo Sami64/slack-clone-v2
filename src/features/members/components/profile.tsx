@@ -46,7 +46,7 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
 				</div>
 				<div className="h-full flex flex-col gap-y-2 items-center justify-center">
 					<AlertTriangle className="size-5 text-muted-foreground" />
-					<p className="text-sm text-muted-foreground">Profile not found</p>
+					<p className="text-sm text-muted-foreground">Profile doesn&apos;t exist</p>
 				</div>
 			</div>
 		)
