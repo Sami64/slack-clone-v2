@@ -5,6 +5,7 @@ import {
 	ResizablePanel,
 	ResizablePanelGroup,
 } from '@/components/ui/resizable'
+import Profile from '@/features/members/components/profile'
 import Thread from '@/features/messages/components/thread'
 import { usePanel } from '@/hooks/use-panel'
 import { Loader } from 'lucide-react'
@@ -12,7 +13,6 @@ import { Id } from '../../../../convex/_generated/dataModel'
 import Sidebar from './sidebar'
 import WorkspaceToolbar from './toolbar'
 import WorkspaceSidebar from './workspace-sidebar'
-import Profile from '@/features/members/components/profile'
 
 const WorkspaceIdLayout = ({
 	children,
@@ -38,7 +38,11 @@ const WorkspaceIdLayout = ({
 						<WorkspaceSidebar />
 					</ResizablePanel>
 					<ResizableHandle withHandle></ResizableHandle>
-					<ResizablePanel minSize={20}>{children}</ResizablePanel>
+					<ResizablePanel
+						minSize={20}
+						defaultSize={80}>
+						{children}
+					</ResizablePanel>
 					{showPanel && (
 						<>
 							<ResizableHandle withHandle />
