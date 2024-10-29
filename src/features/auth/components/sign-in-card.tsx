@@ -7,9 +7,12 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
 import { useAuthActions } from '@convex-dev/auth/react'
 import { TriangleAlertIcon } from 'lucide-react'
 import { useState } from 'react'
+import { FaGithub } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import { SignInFlow } from '../types'
 
 interface SignInCardProps {
@@ -90,7 +93,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
 						Continue
 					</Button>
 				</form>
-				{/* <Separator />
+				<Separator />
 				<div className="flex flex-col gap-y-2.5">
 					<Button
 						disabled={pending}
@@ -110,7 +113,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
 						<FaGithub className="size-5 absolute top-2.5 left-2.5" />
 						Continue with Github
 					</Button>
-				</div> */}
+				</div>
 				<p className="text-xs text-muted-foreground">
 					Don&apos;t have an account?{' '}
 					<span
